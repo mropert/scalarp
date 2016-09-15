@@ -7,5 +7,6 @@ Requirements
 ============
 
 * C++11, bitches!
-* lib-nfc, yo!
+* CMake 3.0, bro!
+* libnfc, yo!
 

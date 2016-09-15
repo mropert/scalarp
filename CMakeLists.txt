@@ -1,6 +1,8 @@
 cmake_minimum_required (VERSION 3.0)
 project (nfc_read)
 
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules/")
+
 if (${CMAKE_VERSION} VERSION_LESS "3.1")
 	include(CheckCXXCompilerFlag)
 	CHECK_CXX_COMPILER_FLAG("-std=c++14" COMPILER_SUPPORTS_CXX14)
@@ -14,7 +16,13 @@ else()
 	set (CMAKE_CXX_STANDARD_REQUIRED ON)
 endif()
 
+find_package(LibNFC REQUIRED)
+include_directories(${LIBNFC_INCLUDE_DIR})
+
 set (sources src/piak.cpp)
 
-add_executable(nfc_read ${sources})
+set(LIBS ${LIBNFC_LIBRARY})
+
+add_executable(nfc_read ${sources} )
+target_link_libraries(nfc_read ${LIBS})
 
