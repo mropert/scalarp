@@ -18,7 +18,7 @@ For the app:
 * Google Chrome
 * npm
 
-For nfc_tools (used by the app)
+For nfc_read (used by the app)
 * C++14
 * CMake 3.0
 * libnfc
