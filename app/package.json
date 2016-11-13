@@ -1,0 +1,19 @@
+{
+  "name": "scalarp-kiosk",
+  "version": "1.0.0",
+  "description": "A kiosk app to manage LARPs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "babelify": "^7.3.0",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "react": "^15.3.2",
+    "react-bootstrap": "^0.30.6",
+    "react-dom": "^15.3.2"
+  }
+}

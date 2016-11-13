@@ -1,0 +1,12 @@
+{
+  "name": "Scalarp Kiosk App",
+  "description": "A chrome kiosk app to manage LARPs at scale.",
+  "version": "0.1",
+  "manifest_version": 2,
+  "app": {
+    "background": {
+      "scripts": ["js/background.js"]
+    }
+  },
+  "icons": { "16": "images/icon-16.png", "128": "images/icon-128.png" }
+}

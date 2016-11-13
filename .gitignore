@@ -1,1 +1,3 @@
-/build-dir/*
+**/build-dir/*
+**/dist/*
+**/node_modules/*
