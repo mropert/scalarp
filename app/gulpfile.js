@@ -1,35 +1,48 @@
 var gulp = require('gulp'),
-    del = require('del');
+    bsConfig = require('gulp-bootstrap-configurator'),
+    del = require('del'),
+    babelify = require('babelify'),
+    browserify = require('browserify')
+    source = require('vinyl-source-stream');
 
 // Clean
 gulp.task('clean', function() {
     return del(['dist']);
 });
 
+// Chrome assets
+gulp.task('chrome-assets', function() {
+  return gulp.src('src/assets/*')
+    .pipe(gulp.dest('dist'));
+});
+
+// For CSS 
+gulp.task('bootstrap-css', function(){
+  return gulp.src("src/bootstrap-config.json")
+    .pipe(bsConfig.css({
+      compress: true,
+      bower: false,
+      name: '../bootstrap.css' // bootstrap-configurator has a creative way to determine target path...
+    }))
+    .pipe(gulp.dest("dist/styles"));
+});
+ 
 // Images
 gulp.task('images', function() {
   return gulp.src('src/images/**/*')
     .pipe(gulp.dest('dist/images'));
 });
 
-// Manifest
-gulp.task('manifest', function() {
-  return gulp.src('src/assets/manifest.json')
-    .pipe(gulp.dest('dist'));
+// React
+gulp.task('react', function() {
+    return browserify('src/js/main.jsx')
+        .transform(babelify, {presets: ['es2015', 'react']})
+        .bundle()
+        .pipe(source('main.js'))
+        .pipe(gulp.dest('dist/js'));
 });
 
-// Scripts
-gulp.task('scripts', function() {
-  return gulp.src('src/js/**/*.js')
-    .pipe(gulp.dest('dist/js'));
-});
-
-// Window
-gulp.task('window', function() {
-  return gulp.src('src/assets/window.html')
-    .pipe(gulp.dest('dist'));
-});
-
+// Main task
 gulp.task('default', ['clean'], function() {
-  gulp.start('images', 'manifest', 'scripts', 'window');
+  gulp.start('bootstrap-css', 'chrome-assets', 'images', 'react');
 });
