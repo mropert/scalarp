@@ -19,10 +19,15 @@ endif()
 find_package(LibNFC REQUIRED)
 include_directories(${LIBNFC_INCLUDE_DIR})
 
-set (sources src/piak.cpp)
+find_package(Boost COMPONENTS program_options REQUIRED)
+include_directories(${Boost_INCLUDE_DIR})
+
+include_directories(include)
+set (sources src/main.cpp src/nfc_reader.cpp src/nfc_json.cpp src/nfc_tag_mifare.cpp)
 
 set(LIBS ${LIBNFC_LIBRARY})
 
 add_executable(nfc_read ${sources} )
 target_link_libraries(nfc_read ${LIBS})
+target_link_libraries(nfc_read ${Boost_LIBRARIES})
 
