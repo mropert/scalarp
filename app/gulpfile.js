@@ -16,7 +16,7 @@ gulp.task('chrome-assets', function() {
     .pipe(gulp.dest('dist'));
 });
 
-// For CSS 
+// For CSS
 gulp.task('bootstrap-css', function(){
   return gulp.src("src/bootstrap-config.json")
     .pipe(bsConfig.css({
@@ -26,7 +26,7 @@ gulp.task('bootstrap-css', function(){
     }))
     .pipe(gulp.dest("dist/styles"));
 });
- 
+
 // Images
 gulp.task('images', function() {
   return gulp.src('src/images/**/*')
@@ -42,7 +42,13 @@ gulp.task('react', function() {
         .pipe(gulp.dest('dist/js'));
 });
 
+// Rerun the task when a file changes
+gulp.task('watch', function() {
+  gulp.watch(['src/js/**/*.jsx'], ['react']);
+  gulp.watch(['src/images/**/*'], ['images']);
+});
+
 // Main task
 gulp.task('default', ['clean'], function() {
-  gulp.start('bootstrap-css', 'chrome-assets', 'images', 'react');
+  gulp.start('bootstrap-css', 'chrome-assets', 'images', 'react', 'watch');
 });
