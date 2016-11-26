@@ -5,10 +5,10 @@ import Manager from './component/Manager.jsx';
 
 class App extends React.Component {
   render() {
-    return <div>
-            <PageHeader>Scalable LARP Manager</PageHeader>
-            <Manager/>
-           </div>;
+    return (<div className="container">
+      <PageHeader>Scalable LARP Manager</PageHeader>
+      <Manager />
+    </div>);
   }
 }
 

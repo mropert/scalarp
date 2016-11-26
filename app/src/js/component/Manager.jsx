@@ -8,30 +8,29 @@ class Manager extends React.Component {
   constructor() {
     super();
     this.state = {
-      character: null
-    }
+      character: null,
+    };
   }
 
   onLogin(charId) {
-    var character = Character.get(charId);
+    const character = Character.get(charId);
     if (character != null) {
       this.setState({
-        character: character
+        character,
       });
-    }
-    else {
+    } else {
       this.setState({
         character: null,
-        error: "Invalid character ID"
+        error: 'Invalid character ID',
       });
     }
   }
 
   render() {
-    if (this.state.character == null)
-      return <LoginForm onLogin={this.onLogin.bind(this)} error={this.state.error}/>;
-    else
-      return <CharacterInfo character={this.state.character}/>
+    if (this.state.character == null) {
+      return <LoginForm onLogin={this.onLogin.bind(this)} error={this.state.error} />;
+    }
+    return <CharacterInfo character={this.state.character} />;
   }
 }
 
