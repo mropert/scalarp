@@ -16,7 +16,12 @@ class CharacterInfo extends React.Component {
 }
 
 CharacterInfo.propTypes = {
-  character: React.PropTypes.string.isRequired,
+  character: React.PropTypes.shape({
+    id: React.PropTypes.string.isRequired,
+    name: React.PropTypes.string.isRequired,
+    race: React.PropTypes.string.isRequired,
+    skills: React.PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 module.exports = CharacterInfo;

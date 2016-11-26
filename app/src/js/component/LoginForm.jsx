@@ -13,7 +13,7 @@ function LoginError(props) {
 }
 
 LoginError.propTypes = {
-  msg: React.PropTypes.string.isOptional,
+  msg: React.PropTypes.string,
 };
 
 class LoginForm extends React.Component {
@@ -36,7 +36,7 @@ class LoginForm extends React.Component {
     const length = this.state.value.length;
     if (isValid(this.state.value)) return 'success';
     if (length > 0) return 'error';
-    return '';
+    return null;
   }
 
   handleChange(e) {
@@ -75,8 +75,8 @@ class LoginForm extends React.Component {
 }
 
 LoginForm.propTypes = {
-  error: React.PropTypes.string.isOptional,
-  onLogin: React.PropTypes.function.isRequired,
+  error: React.PropTypes.string,
+  onLogin: React.PropTypes.func.isRequired,
 };
 
 module.exports = LoginForm;
