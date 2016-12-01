@@ -1,16 +1,20 @@
 import React from 'react';
-import { Alert, ControlLabel, FormControl, FormGroup, HelpBlock } from 'react-bootstrap';
+import { Alert, Button, ControlLabel, FormControl, FormGroup, HelpBlock, Panel } from 'react-bootstrap';
 
 function isValid(login) {
   return login.match(/^[0-9A-Fa-f]{8}$/);
 }
 
 function LoginError(props) {
-  if (props.msg != null)
+  if (props.msg != null) {
     return <Alert bsStyle="warning"><strong>Login error:</strong> {props.msg}</Alert>;
-  else
-    return null;
+  }
+  return null;
 }
+
+LoginError.propTypes = {
+  msg: React.PropTypes.string,
+};
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -21,45 +25,58 @@ class LoginForm extends React.Component {
     };
   }
 
+  onSubmit(e) {
+    if (isValid(this.state.value)) {
+      this.state.onLogin(this.state.value);
+    }
+    e.preventDefault();
+  }
+
   getValidationState() {
     const length = this.state.value.length;
     if (isValid(this.state.value)) return 'success';
-    else if (length > 0) return 'error';
+    if (length > 0) return 'error';
+    return null;
   }
 
   handleChange(e) {
     this.setState({ value: e.target.value });
   }
 
-  onSubmit(e) {
-    if (isValid(this.state.value))
-      this.state.onLogin(this.state.value);
-    e.preventDefault();
-  }
-
   render() {
     return (
       <div>
-        <LoginError msg={this.props.error}/>
-        <form onSubmit={this.onSubmit.bind(this)}>
-          <FormGroup
-            controlId="formBasicText"
-            validationState={this.getValidationState()}
-          >
-            <ControlLabel>Enter your character ID</ControlLabel>
-            <FormControl
-              type="text"
-              value={this.state.value}
-              placeholder="Enter text"
-              onChange={this.handleChange.bind(this)}
-            />
-            <FormControl.Feedback />
-            <HelpBlock>A character ID is 8 character long, containing only digits and letters from A to F</HelpBlock>
-          </FormGroup>
-        </form>
+        <Panel>
+          <LoginError msg={this.props.error} />
+          <form onSubmit={this.onSubmit.bind(this)} >
+            <FormGroup
+              controlId="formBasicText"
+              validationState={this.getValidationState()}
+            >
+              <ControlLabel>Enter your character ID</ControlLabel>
+              <FormControl
+                type="text"
+                value={this.state.value}
+                placeholder="Enter text"
+                onChange={this.handleChange.bind(this)}
+              />
+              <FormControl.Feedback />
+              <HelpBlock>A character ID is 8 character long, containing only digits and letters
+                from A to F</HelpBlock>
+            </FormGroup>
+            <Button type="submit">
+              Authenticate
+            </Button>
+          </form>
+        </Panel>
       </div>
     );
   }
 }
+
+LoginForm.propTypes = {
+  error: React.PropTypes.string,
+  onLogin: React.PropTypes.func.isRequired,
+};
 
 module.exports = LoginForm;
