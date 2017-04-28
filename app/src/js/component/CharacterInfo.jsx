@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 function CharacterInfo(props) {
@@ -14,11 +15,11 @@ function CharacterInfo(props) {
 }
 
 CharacterInfo.propTypes = {
-  character: React.PropTypes.shape({
-    id: React.PropTypes.string.isRequired,
-    name: React.PropTypes.string.isRequired,
-    race: React.PropTypes.string.isRequired,
-    skills: React.PropTypes.string.isRequired,
+  character: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    race: PropTypes.string.isRequired,
+    skills: PropTypes.string.isRequired,
   }).isRequired,
 };
 

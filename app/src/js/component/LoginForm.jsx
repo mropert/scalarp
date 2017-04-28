@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Alert, Button, ControlLabel, FormControl, FormGroup, HelpBlock, Panel } from 'react-bootstrap';
 
@@ -13,7 +14,11 @@ function LoginError(props) {
 }
 
 LoginError.propTypes = {
-  msg: React.PropTypes.string,
+  msg: PropTypes.string,
+};
+
+LoginError.defaultProps = {
+  msg: null,
 };
 
 class LoginForm extends React.Component {
@@ -75,8 +80,12 @@ class LoginForm extends React.Component {
 }
 
 LoginForm.propTypes = {
-  error: React.PropTypes.string,
-  onLogin: React.PropTypes.func.isRequired,
+  error: PropTypes.string,
+  onLogin: PropTypes.func.isRequired,
+};
+
+LoginForm.defaultProps = {
+  error: null,
 };
 
 module.exports = LoginForm;
