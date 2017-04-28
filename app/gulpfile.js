@@ -19,7 +19,7 @@ gulp.task('bootstrap-css', () => gulp.src('src/bootstrap-config.json')
     .pipe(bsConfig.css({
       compress: true,
       bower: false,
-      name: '../bootstrap.css', // bootstrap-configurator has a creative way to determine target path...
+      name: 'bootstrap.css',
     }))
     .pipe(gulp.dest('dist/styles')));
 
@@ -53,11 +53,11 @@ gulp.task('react', () => browserify('src/js/main.jsx')
 
 // Rerun the task when a file changes
 gulp.task('watch', ['lint'], () => {
-    gulp.watch(['src/js/**/*.jsx'], ['react']);
-    gulp.watch(['src/images/**/*'], ['images']);
+  gulp.watch(['src/js/**/*.jsx'], ['react']);
+  gulp.watch(['src/images/**/*'], ['images']);
 });
 
 // Main task
 gulp.task('default', ['clean', 'lint'], () => {
-    gulp.start('bootstrap-css', 'chrome-assets', 'images', 'react', 'watch');
+  gulp.start('bootstrap-css', 'chrome-assets', 'images', 'react', 'watch');
 });

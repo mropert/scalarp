@@ -28,7 +28,7 @@ class Manager extends React.Component {
 
   render() {
     if (this.state.character == null) {
-      return <LoginForm onLogin={this.onLogin.bind(this)} error={this.state.error} />;
+      return <LoginForm onLogin={e => this.onLogin(e)} error={this.state.error} />;
     }
     return <CharacterInfo character={this.state.character} />;
   }
