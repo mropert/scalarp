@@ -1,3 +1,8 @@
+/* eslint-env mocha */
 import { assert } from 'chai';
 
-assert.equal(true, true, 'Dummy test');
+describe('Dummy test', () => {
+  it('should be equal to true', () => {
+    assert.equal(true, true);
+  });
+});
