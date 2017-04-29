@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 class Character {
   static get(charId) {
     if (charId === '01234567') {
@@ -28,6 +30,15 @@ class Character {
       };
     }
     return null;
+  }
+
+  static props() {
+    return PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      race: PropTypes.string.isRequired,
+      skills: PropTypes.string.isRequired,
+    });
   }
 }
 
