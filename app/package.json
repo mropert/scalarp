@@ -14,6 +14,7 @@
     "babelify": "~7.3.0",
     "bootstrap": "~3.3.7",
     "browserify": "~14.3.0",
+    "chai": "^3.5.0",
     "del": "~2.2.2",
     "eslint": "~3.19.0",
     "eslint-config-airbnb": "~14.1.0",
@@ -23,6 +24,8 @@
     "gulp": "~3.9.1",
     "gulp-bootstrap-configurator": "~0.4.1",
     "gulp-eslint": "~3.0.1",
+    "gulp-mocha": "^4.3.1",
+    "mocha": "^3.3.0",
     "vinyl-source-stream": "~1.1.0"
   },
   "dependencies": {
