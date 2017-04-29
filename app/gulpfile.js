@@ -23,6 +23,10 @@ gulp.task('bootstrap-css', () => gulp.src('src/bootstrap-config.json')
     }))
     .pipe(gulp.dest('dist/styles')));
 
+// Fonts
+gulp.task('fonts', () => gulp.src('src/fonts/**/*')
+    .pipe(gulp.dest('dist/fonts')));
+
 // Images
 gulp.task('images', () => gulp.src('src/images/**/*')
     .pipe(gulp.dest('dist/images')));
@@ -59,5 +63,5 @@ gulp.task('watch', ['lint'], () => {
 
 // Main task
 gulp.task('default', ['clean', 'lint'], () => {
-  gulp.start('bootstrap-css', 'chrome-assets', 'images', 'react', 'watch');
+  gulp.start('bootstrap-css', 'chrome-assets', 'fonts', 'images', 'react', 'watch');
 });

@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Alert, Button, ControlLabel, FormControl, FormGroup, HelpBlock, Panel } from 'react-bootstrap';
 
+import Character from '../model/Character.jsx';
+
 function isValid(login) {
   return login.match(/^[0-9A-Fa-f]{8}$/);
 }
@@ -25,35 +27,43 @@ class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: '',
+      characterId: '',
+      error: null,
       onLogin: props.onLogin,
     };
   }
 
   onSubmit(e) {
-    if (isValid(this.state.value)) {
-      this.state.onLogin(this.state.value);
+    if (isValid(this.state.characterId)) {
+      const character = Character.get(this.state.characterId);
+      if (character != null) {
+        this.state.onLogin(character);
+      } else {
+        this.setState({
+          error: 'Invalid character ID',
+        });
+      }
     }
     e.preventDefault();
   }
 
   getValidationState() {
-    const length = this.state.value.length;
-    if (isValid(this.state.value)) return 'success';
+    const length = this.state.characterId.length;
+    if (isValid(this.state.characterId)) return 'success';
     if (length > 0) return 'error';
     return null;
   }
 
   handleChange(e) {
-    this.setState({ value: e.target.value });
+    this.setState({ characterId: e.target.value });
   }
 
   render() {
     return (
       <div>
         <Panel>
-          <LoginError msg={this.props.error} />
-          <form onSubmit={this.onSubmit.bind(this)} >
+          <LoginError msg={this.state.error} />
+          <form onSubmit={e => this.onSubmit(e)} >
             <FormGroup
               controlId="formBasicText"
               validationState={this.getValidationState()}
@@ -61,9 +71,9 @@ class LoginForm extends React.Component {
               <ControlLabel>Enter your character ID</ControlLabel>
               <FormControl
                 type="text"
-                value={this.state.value}
+                value={this.state.characterId}
                 placeholder="Enter text"
-                onChange={this.handleChange.bind(this)}
+                onChange={e => this.handleChange(e)}
               />
               <FormControl.Feedback />
               <HelpBlock>A character ID is 8 character long, containing only digits and letters
@@ -80,12 +90,7 @@ class LoginForm extends React.Component {
 }
 
 LoginForm.propTypes = {
-  error: PropTypes.string,
   onLogin: PropTypes.func.isRequired,
-};
-
-LoginForm.defaultProps = {
-  error: null,
 };
 
 module.exports = LoginForm;
