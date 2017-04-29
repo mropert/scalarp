@@ -8,6 +8,7 @@ class App extends React.Component {
     super();
     this.state = {
       character: null,
+      module: 'home',
     };
   }
 
@@ -20,13 +21,29 @@ class App extends React.Component {
   onLogout() {
     this.setState({
       character: null,
+      module: 'home',
+    });
+  }
+
+  navigate(module) {
+    this.setState({
+      module,
     });
   }
 
   render() {
     return (<div className="container">
-      <Header character={this.state.character} onLogout={e => this.onLogout(e)} />
-      <Manager character={this.state.character} onLogin={e => this.onLogin(e)} />
+      <Header
+        character={this.state.character}
+        navigate={e => this.navigate(e)}
+        onLogout={e => this.onLogout(e)}
+      />
+      <Manager
+        character={this.state.character}
+        module={this.state.module}
+        navigate={e => this.navigate(e)}
+        onLogin={e => this.onLogin(e)}
+      />
     </div>);
   }
 }
