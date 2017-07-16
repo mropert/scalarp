@@ -35,14 +35,14 @@ LogoutButton.defaultProps = {
   character: null,
 };
 
-function NavWidget({ character, navigate, onLogout }) {
+function NavWidget({ character, navigateHome, onLogout }) {
   return (
     <Grid>
       <Row>
         <Col xs={2} md={2}><Greetings character={character} /></Col>
         <Col xs={2} md={2}>
           <ButtonToolbar>
-            <Button onClick={() => navigate('home')}><Glyphicon glyph="home" /></Button>
+            <Button onClick={() => navigateHome()}><Glyphicon glyph="home" /></Button>
             <LogoutButton character={character} onLogout={onLogout} />
           </ButtonToolbar>
         </Col>
@@ -53,7 +53,7 @@ function NavWidget({ character, navigate, onLogout }) {
 
 NavWidget.propTypes = {
   character: Character.props(),
-  navigate: PropTypes.func.isRequired,
+  navigateHome: PropTypes.func.isRequired,
   onLogout: PropTypes.func.isRequired,
 };
 
@@ -61,7 +61,7 @@ NavWidget.defaultProps = {
   character: null,
 };
 
-function Header({ character, navigate, onLogout }) {
+function Header({ character, navigateHome, onLogout }) {
   return (
     <div>
       <Grid>
@@ -70,7 +70,7 @@ function Header({ character, navigate, onLogout }) {
           <Col xs={6} md={4}>
             <NavWidget
               character={character}
-              navigate={navigate}
+              navigateHome={navigateHome}
               onLogout={onLogout}
             />
           </Col>
@@ -83,7 +83,7 @@ function Header({ character, navigate, onLogout }) {
 
 Header.propTypes = {
   character: Character.props(),
-  navigate: PropTypes.func.isRequired,
+  navigateHome: PropTypes.func.isRequired,
   onLogout: PropTypes.func.isRequired,
 };
 
