@@ -1,15 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-function CharacterInfo(props) {
-  const char = props.character;
+function CharacterInfo({ character }) {
   return (<div>
     <h1>Character sheet</h1>
     <ul>
-      <li>Id: #{char.id}</li>
-      <li>Name: {char.name}</li>
-      <li>Race: {char.race}</li>
-      <li>Skills: {char.skills}</li>
+      <li>Id: #{character.id}</li>
+      <li>Name: {character.name}</li>
+      <li>Race: {character.race}</li>
+      <li>Skills: {character.skills}</li>
     </ul>
   </div>);
 }

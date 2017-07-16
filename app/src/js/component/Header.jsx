@@ -4,9 +4,9 @@ import { Button, ButtonToolbar, Col, Glyphicon, Grid, Row } from 'react-bootstra
 
 import Character from '../model/Character.jsx';
 
-function Greetings(props) {
-  if (props.character) {
-    return <p>Hello {props.character.name}</p>;
+function Greetings({ character }) {
+  if (character) {
+    return <p>Hello {character.name}</p>;
   }
   return null;
 }
@@ -19,9 +19,9 @@ Greetings.defaultProps = {
   character: null,
 };
 
-function LogoutButton(props) {
-  if (props.character) {
-    return <Button onClick={props.onLogout}><Glyphicon glyph="off" /></Button>;
+function LogoutButton({ character, onLogout }) {
+  if (character) {
+    return <Button onClick={onLogout}><Glyphicon glyph="off" /></Button>;
   }
   return null;
 }
@@ -35,15 +35,15 @@ LogoutButton.defaultProps = {
   character: null,
 };
 
-function NavWidget(props) {
+function NavWidget({ character, navigate, onLogout }) {
   return (
     <Grid>
       <Row>
-        <Col xs={2} md={2}><Greetings character={props.character} /></Col>
+        <Col xs={2} md={2}><Greetings character={character} /></Col>
         <Col xs={2} md={2}>
           <ButtonToolbar>
-            <Button onClick={() => props.navigate('home')}><Glyphicon glyph="home" /></Button>
-            <LogoutButton character={props.character} onLogout={props.onLogout} />
+            <Button onClick={() => navigate('home')}><Glyphicon glyph="home" /></Button>
+            <LogoutButton character={character} onLogout={onLogout} />
           </ButtonToolbar>
         </Col>
       </Row>
@@ -61,7 +61,7 @@ NavWidget.defaultProps = {
   character: null,
 };
 
-function Header(props) {
+function Header({ character, navigate, onLogout }) {
   return (
     <div>
       <Grid>
@@ -69,9 +69,9 @@ function Header(props) {
           <Col xs={12} md={8}><h1>Scalable LARP Manager</h1></Col>
           <Col xs={6} md={4}>
             <NavWidget
-              character={props.character}
-              navigate={props.navigate}
-              onLogout={props.onLogout}
+              character={character}
+              navigate={navigate}
+              onLogout={onLogout}
             />
           </Col>
         </Row>
