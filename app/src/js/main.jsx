@@ -5,9 +5,9 @@ import { createStore } from 'redux';
 import { devToolsEnhancer } from 'redux-devtools-extension';
 
 import App from './App.jsx';
-import scalarpReduce from './Reducers.jsx';
+import { initialState, scalarpReduce } from './Reducers.jsx';
 
-const store = createStore(scalarpReduce, devToolsEnhancer());
+const store = createStore(scalarpReduce, initialState(), devToolsEnhancer());
 
 ReactDOM.render(
   <Provider store={store}><App /></Provider>,

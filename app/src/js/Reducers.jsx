@@ -1,11 +1,13 @@
 import { LOGIN, LOGOUT, NAVIGATE } from './Actions.jsx';
 
-const initialState = {
-  character: null,
-  nav: 'home',
-};
+export function initialState() {
+  return {
+    character: null,
+    nav: 'home',
+  };
+}
 
-function scalarpReduce(state = initialState, action) {
+export function scalarpReduce(state, action) {
   switch (action.type) {
     case LOGIN:
       return Object.assign({}, state, { character: action.character });
@@ -17,5 +19,3 @@ function scalarpReduce(state = initialState, action) {
       return state;
   }
 }
-
-export default scalarpReduce;
