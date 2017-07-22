@@ -7,7 +7,7 @@ import CharacterInfo from './CharacterInfo.jsx';
 import LoginForm from './LoginForm.jsx';
 import Home from './Home.jsx';
 
-function Manager({ character, nav, navigate, onLogin }) {
+export default function Manager({ character, nav, navigate, onLogin }) {
   switch (nav) {
     case 'character':
       if (character == null) {
@@ -31,5 +31,3 @@ Manager.propTypes = {
 Manager.defaultProps = {
   character: null,
 };
-
-module.exports = Manager;

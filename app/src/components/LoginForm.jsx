@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Alert, Button, ControlLabel, FormControl, FormGroup, HelpBlock, Panel } from 'react-bootstrap';
+import { Alert, Button, Label, Input, FormFeedback, FormGroup, FormText, Card } from 'reactstrap';
 
 import Character from '../model/Character.jsx';
 
@@ -23,7 +23,7 @@ LoginError.defaultProps = {
   msg: null,
 };
 
-class LoginForm extends React.Component {
+export default class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -50,7 +50,7 @@ class LoginForm extends React.Component {
   getValidationState() {
     const length = this.state.characterId.length;
     if (isValid(this.state.characterId)) return 'success';
-    if (length > 0) return 'error';
+    if (length > 0) return 'danger';
     return null;
   }
 
@@ -61,29 +61,29 @@ class LoginForm extends React.Component {
   render() {
     return (
       <div>
-        <Panel>
+        <Card>
           <LoginError msg={this.state.error} />
           <form onSubmit={e => this.onSubmit(e)} >
             <FormGroup
-              controlId="formBasicText"
-              validationState={this.getValidationState()}
+              color={this.getValidationState()}
             >
-              <ControlLabel>Enter your character ID</ControlLabel>
-              <FormControl
+              <Label>Enter your character ID</Label>
+              <Input
                 type="text"
                 value={this.state.characterId}
                 placeholder="Enter text"
                 onChange={e => this.handleChange(e)}
+                state={this.getValidationState()}
               />
-              <FormControl.Feedback />
-              <HelpBlock>A character ID is 8 character long, containing only digits and letters
-                from A to F</HelpBlock>
+              <FormFeedback />
+              <FormText>A character ID is 8 character long, containing only digits and letters
+                from A to F</FormText>
             </FormGroup>
             <Button type="submit">
               Authenticate
             </Button>
           </form>
-        </Panel>
+        </Card>
       </div>
     );
   }
@@ -92,5 +92,3 @@ class LoginForm extends React.Component {
 LoginForm.propTypes = {
   onLogin: PropTypes.func.isRequired,
 };
-
-module.exports = LoginForm;

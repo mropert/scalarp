@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { logout, navigate } from '../Actions.jsx';
-import Header from '../component/Header.jsx';
+import Header from '../components/Header.jsx';
 
 function mapStateToProps(state) {
   return {

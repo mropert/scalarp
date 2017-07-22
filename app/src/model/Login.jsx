@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-class Login {
+export default class Login {
   static props() {
     return PropTypes.shape({
       error: PropTypes.string,
@@ -8,5 +8,3 @@ class Login {
     });
   }
 }
-
-module.exports = Login;

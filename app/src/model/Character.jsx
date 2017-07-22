@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-class Character {
+export default class Character {
   static get(charId) {
     if (charId === '01234567') {
       return {
@@ -41,5 +41,3 @@ class Character {
     });
   }
 }
-
-module.exports = Character;
