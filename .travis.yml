@@ -4,6 +4,6 @@ node_js:
 before_install:
   - cd app
 install:
-  - npm install -g gulp
   - npm install
-script: gulp build
+script:
+  - npm test

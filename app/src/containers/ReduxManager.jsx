@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { login, navigate } from '../Actions.jsx';
-import Manager from '../component/Manager.jsx';
+import Manager from '../components/Manager.jsx';
 
 function mapStateToProps(state) {
   return {

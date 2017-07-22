@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Button, ButtonToolbar, Col, Glyphicon, Grid, Row } from 'react-bootstrap';
+import { Button, ButtonToolbar, Col, Container, Row } from 'reactstrap';
+import { FaHome, FaPowerOff } from 'react-icons/lib/fa'
 
 import Character from '../model/Character.jsx';
 
@@ -21,7 +22,7 @@ Greetings.defaultProps = {
 
 function LogoutButton({ character, onLogout }) {
   if (character) {
-    return <Button onClick={onLogout}><Glyphicon glyph="off" /></Button>;
+    return <Button onClick={onLogout}><FaPowerOff /></Button>;
   }
   return null;
 }
@@ -37,17 +38,17 @@ LogoutButton.defaultProps = {
 
 function NavWidget({ character, navigateHome, onLogout }) {
   return (
-    <Grid>
+    <Container>
       <Row>
         <Col xs={2} md={2}><Greetings character={character} /></Col>
         <Col xs={2} md={2}>
           <ButtonToolbar>
-            <Button onClick={() => navigateHome()}><Glyphicon glyph="home" /></Button>
+            <Button onClick={() => navigateHome()}><FaHome /></Button>
             <LogoutButton character={character} onLogout={onLogout} />
           </ButtonToolbar>
         </Col>
       </Row>
-    </Grid>
+    </Container>
   );
 }
 
@@ -61,10 +62,10 @@ NavWidget.defaultProps = {
   character: null,
 };
 
-function Header({ character, navigateHome, onLogout }) {
+export default function Header({ character, navigateHome, onLogout }) {
   return (
     <div>
-      <Grid>
+      <Container>
         <Row style={{ display: 'flex', alignItems: 'flex-end' }}>
           <Col xs={12} md={8}><h1>Scalable LARP Manager</h1></Col>
           <Col xs={6} md={4}>
@@ -75,7 +76,7 @@ function Header({ character, navigateHome, onLogout }) {
             />
           </Col>
         </Row>
-      </Grid>
+      </Container>
       <hr />
     </div>
   );
@@ -90,5 +91,3 @@ Header.propTypes = {
 Header.defaultProps = {
   character: null,
 };
-
-module.exports = Header;

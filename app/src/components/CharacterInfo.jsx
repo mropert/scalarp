@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-function CharacterInfo({ character }) {
+export default function CharacterInfo({ character }) {
   return (<div>
     <h1>Character sheet</h1>
     <ul>
@@ -21,5 +21,3 @@ CharacterInfo.propTypes = {
     skills: PropTypes.string.isRequired,
   }).isRequired,
 };
-
-module.exports = CharacterInfo;
