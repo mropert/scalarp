@@ -6,9 +6,9 @@ const initialState = {
 };
 
 function scalarpReduce(state = initialState, action) {
-  switch (action) {
+  switch (action.type) {
     case LOGIN:
-      return Object.assign({}, state, action.character);
+      return Object.assign({}, state, { character: action.character });
     case LOGOUT:
       return Object.assign({}, state, { character: null, nav: 'home' });
     case NAVIGATE:

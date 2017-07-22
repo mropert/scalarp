@@ -11,7 +11,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     onLogout: () => {
-      dispatch(logout);
+      dispatch(logout());
     },
     navigateHome: () => {
       dispatch(navigate('home'));

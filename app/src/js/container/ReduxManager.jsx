@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { login, logout, navigate } from '../Actions.jsx';
+import { login, navigate } from '../Actions.jsx';
 import Manager from '../component/Manager.jsx';
 
 function mapStateToProps(state) {
@@ -13,9 +13,6 @@ function mapDispatchToProps(dispatch) {
   return {
     onLogin: (char) => {
       dispatch(login(char));
-    },
-    onLogout: () => {
-      dispatch(logout);
     },
     navigate: (dest) => {
       dispatch(navigate(dest));
