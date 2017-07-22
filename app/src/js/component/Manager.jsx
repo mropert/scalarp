@@ -7,8 +7,8 @@ import CharacterInfo from './CharacterInfo.jsx';
 import LoginForm from './LoginForm.jsx';
 import Home from './Home.jsx';
 
-function Manager({ character, module, navigate, onLogin }) {
-  switch (module) {
+function Manager({ character, nav, navigate, onLogin }) {
+  switch (nav) {
     case 'character':
       if (character == null) {
         return <LoginForm onLogin={onLogin} />;
@@ -23,7 +23,7 @@ function Manager({ character, module, navigate, onLogin }) {
 
 Manager.propTypes = {
   character: Character.props(),
-  module: PropTypes.string.isRequired,
+  nav: PropTypes.string.isRequired,
   navigate: PropTypes.func.isRequired,
   onLogin: PropTypes.func.isRequired,
 };
