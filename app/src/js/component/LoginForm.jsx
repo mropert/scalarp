@@ -8,9 +8,9 @@ function isValid(login) {
   return login.match(/^[0-9A-Fa-f]{8}$/);
 }
 
-function LoginError(props) {
-  if (props.msg != null) {
-    return <Alert bsStyle="warning"><strong>Login error:</strong> {props.msg}</Alert>;
+function LoginError({ msg }) {
+  if (msg != null) {
+    return <Alert bsStyle="warning"><strong>Login error:</strong> {msg}</Alert>;
   }
   return null;
 }

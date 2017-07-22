@@ -7,17 +7,17 @@ import CharacterInfo from './CharacterInfo.jsx';
 import LoginForm from './LoginForm.jsx';
 import Home from './Home.jsx';
 
-function Manager(props) {
-  switch (props.module) {
+function Manager({ character, module, navigate, onLogin }) {
+  switch (module) {
     case 'character':
-      if (props.character == null) {
-        return <LoginForm onLogin={props.onLogin} />;
+      if (character == null) {
+        return <LoginForm onLogin={onLogin} />;
       }
-      return <CharacterInfo character={props.character} />;
+      return <CharacterInfo character={character} />;
 
     case 'home':
     default:
-      return <Home navigate={props.navigate} />;
+      return <Home navigate={navigate} />;
   }
 }
 
